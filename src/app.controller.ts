@@ -10,9 +10,9 @@ export class AppController {
     return this.appService.getHelloWorld();
   }
 
-  @Get('/:name/:age')
-  getParams(@Param() params): string {
-    const { name, age } = params
-    return `Bringing ${name}, aged: ${age} years`
-  }
+  // @Get('/:name/:age')    // recive todos los parametros que quiera
+  // getParams(@Param() params): string {
+  //   const { name, age } = params
+  //   return `Bringing ${name}, aged: ${age} years`
+  // }
 }

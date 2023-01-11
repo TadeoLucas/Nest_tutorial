@@ -23,7 +23,21 @@ export class UserService {
     }
   ]
 
+  createUser(body: UserEntity): string {
+    try{
+      this.users.push(body)
+      return 'success'
+    }catch(error){
+      console.log("🚀 ~ file: user.service.ts:31 ~ UserService ~ createUser ~ error", error)
+      return 'error'
+    }
+  }
+
   getUsers(): UserEntity[] {
     return this.users
+  }
+
+  getUser(id: number): UserEntity {
+    return this.users.find(user => user.id == id)
   }
 }
