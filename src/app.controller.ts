@@ -7,11 +7,12 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return this.appService.getHelloWorld();
   }
 
   @Get('/:name/:age')
   getParams(@Param() params): string {
-    return `Bringing ${params.name}, aged: ${params.age} years`
+    const { name, age } = params
+    return `Bringing ${name}, aged: ${age} years`
   }
 }
