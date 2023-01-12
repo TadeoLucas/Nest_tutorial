@@ -1,5 +1,13 @@
-import { Controller, Get, Post, Param, Body, ParseIntPipe } from '@nestjs/common';
-import { UserEntity } from './user.entity';
+import {
+  Controller,
+  Get,
+  Post,
+  Delete,
+  Param,
+  Body,
+  ParseIntPipe
+} from '@nestjs/common';
+import { UserI } from './user.interfase';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -8,19 +16,25 @@ export class UserController {
   constructor(private UserService: UserService) { }
 
   @Get()
-  getAll(): UserEntity[] {
+  async getAll() {
     return this.UserService.getUsers()
   }
 
   @Get(':id')
-  getById(@Param('id', ParseIntPipe) id: number): UserEntity {
+  async getById(@Param('id', ParseIntPipe) id: number) {
     return this.UserService.getUser(id)
   }
 
-  @Post()
-  createUser(@Body() body: UserEntity): string {
-    return this.UserService.createUser(body)
+  @Post('create')
+  async createUser(@Body() newUser: UserI) {
+    return this.UserService.createUser(newUser)
   }
+
+  @Delete('remove/:id')
+  async removeUserById(@Param('id', ParseIntPipe) id: number) {
+    return this.UserService.removeUser(id)
+  }
+
 }
 
 
